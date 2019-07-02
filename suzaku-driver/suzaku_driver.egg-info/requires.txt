@@ -1,0 +1,14 @@
+clint==0.5.1
+mock==2.0.0
+monotonic==1.5
+netaddr==0.7.19
+netifaces==0.10.7
+pika==0.13.1
+PyYAML==4.2b4
+pyparsing==2.2.2
+pyudev==0.21.0
+pint==0.8.1
+psutil==5.4.7
+requests==2.19.1
+six==1.11.0
+validators==0.12.2

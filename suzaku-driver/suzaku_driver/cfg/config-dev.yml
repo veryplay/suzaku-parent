@@ -1,0 +1,10 @@
+heart:
+    period: 10
+mq:
+    host: 192.168.56.10
+    port: 5672
+    username: admin
+    password: admin
+    vhost: /suzaku
+    exchange: SUZAKU_SCHEDULER
+    receive_routing_key: dev

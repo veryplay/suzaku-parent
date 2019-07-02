@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include suzaku_driver/cfg/*.yml
+include suzaku_driver/*.yml

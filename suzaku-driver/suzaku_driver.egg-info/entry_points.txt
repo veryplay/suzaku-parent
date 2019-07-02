@@ -1,0 +1,3 @@
+[console_scripts]
+suzaku-driver = suzaku_driver.cmd.server:run
+

@@ -1,0 +1,9 @@
+[Unit]
+Description=Suzaku Driver Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python suzaku-driver -e SUZAKU_DRIVER_ENV
+
+[Install]
+WantedBy=multi-user.target
