@@ -27,3 +27,11 @@ target/
 
 ### VS Code ###
 .vscode/
+
+
+# python
+*.eggs/
+*.egg-info/
+dist/
+build/
+*.pyc
