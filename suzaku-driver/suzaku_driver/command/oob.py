@@ -5,8 +5,8 @@ import logging
 import time
 
 from suzaku_driver.command.common import Command
-import suzaku_driver.drivers.ipmitool as ipmitool
 import suzaku_driver.drivers.boot_devices as boot_devices
+from suzaku_driver.drivers.oob_adapter_factory import OutOfBondAdapterFactory
 
 logger = logging.getLogger(__name__)
 
@@ -37,19 +37,26 @@ class SetPXEBoot(Command):
         assert self.password is not None
         assert self.password is not ""
 
+        engine = self.engine
+        self.oob_adapter_factory = OutOfBondAdapterFactory(engine)
+
     def execute_before(self):
         pass
     
     def execute(self):
+        oob_adapter = self.oob_adapter_factory.get_out_of_bond_adapter()
+
         ilo_ip = self.ilo_ip
         username = self.username
         password = self.password
-        ipmitool.set_boot_device(ilo_ip, username, 
+        oob_adapter.set_boot_device(ilo_ip, username, 
             password, boot_devices.PXE)
         time.sleep(3)
-        ipmitool.power_on(ilo_ip, username, password)
+
+        oob_adapter.power_on(ilo_ip, username, password)
         time.sleep(3)
-        ipmitool.power_reset(ilo_ip, username, password)
+        
+        oob_adapter.power_reset(ilo_ip, username, password)
         time.sleep(3)
         logger.info("set %s pxe boot completely", ilo_ip)
     
@@ -84,19 +91,26 @@ class SetDiskBoot(Command):
         assert self.password is not None
         assert self.password is not ""
 
+        engine = self.engine
+        self.oob_adapter_factory = OutOfBondAdapterFactory(engine)
+
     def execute_before(self):
         pass
 
     def execute(self):
+        oob_adapter = self.oob_adapter_factory.get_out_of_bond_adapter()
+
         ilo_ip = self.ilo_ip
         username = self.username
         password = self.password
-        ipmitool.set_boot_device(ilo_ip, username,
+        oob_adapter.set_boot_device(ilo_ip, username,
                                  password, boot_devices.DISK)
         time.sleep(3)
-        ipmitool.power_on(ilo_ip, username, password)
+
+        oob_adapter.power_on(ilo_ip, username, password)
         time.sleep(3)
-        ipmitool.power_reset(ilo_ip, username, password)
+        
+        oob_adapter.power_reset(ilo_ip, username, password)
         time.sleep(3)
         logger.info("set %s disk boot completely", ilo_ip)
 
@@ -130,14 +144,19 @@ class PowerOff(Command):
         assert self.password is not None
         assert self.password is not ""
 
+        engine = self.engine
+        self.oob_adapter_factory = OutOfBondAdapterFactory(engine)
+
     def execute_before(self):
         pass
     
     def execute(self):
+        oob_adapter = self.oob_adapter_factory.get_out_of_bond_adapter()
+        
         ilo_ip = self.ilo_ip
         username = self.username
         password = self.password
-        ipmitool.power_off(ilo_ip, username, password)
+        oob_adapter.power_off(ilo_ip, username, password)
         time.sleep(3)
         logger.info("set %s power off completely")
     
@@ -171,14 +190,19 @@ class PowerOn(Command):
         assert self.password is not None
         assert self.password is not ""
 
+        engine = self.engine
+        self.oob_adapter_factory = OutOfBondAdapterFactory(engine)
+
     def execute_before(self):
         pass
     
     def execute(self):
+        oob_adapter = self.oob_adapter_factory.get_out_of_bond_adapter()
+
         ilo_ip = self.ilo_ip
         username = self.username
         password = self.password
-        ipmitool.power_on(ilo_ip, username, password)
+        oob_adapter.power_on(ilo_ip, username, password)
         time.sleep(3)
         logger.info("set %s power on completely")
     
@@ -212,14 +236,19 @@ class PowerReset(Command):
         assert self.password is not None
         assert self.password is not ""
 
+        engine = self.engine
+        self.oob_adapter_factory = OutOfBondAdapterFactory(engine)
+
     def execute_before(self):
         pass
     
     def execute(self):
+        oob_adapter = self.oob_adapter_factory.get_out_of_bond_adapter()
+
         ilo_ip = self.ilo_ip
         username = self.username
         password = self.password
-        ipmitool.power_reset(ilo_ip, username, password)
+        oob_adapter.power_reset(ilo_ip, username, password)
         time.sleep(3)
         logger.info("set %s power on completely")
     

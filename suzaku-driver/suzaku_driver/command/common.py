@@ -16,11 +16,11 @@ ERROR = "ERROR"
 COMMAND_SETS = {
     "Heart"                 : "suzaku_driver.command.common.Heart",
     "PingHost"              : "suzaku_driver.command.ping.PingHost",
-    "SetPXEBoot"            : "suzaku_driver.command.ipmitool.SetPXEBoot",
-    "SetDISKBoot"           : "suzaku_driver.command.ipmitool.SetDiskBoot",
-    "PowerOn"               : "suzaku_driver.command.ipmitool.PowerOn",
-    "PowerOff"              : "suzaku_driver.command.ipmitool.PowerOff",
-    "PowerReset"            : "suzaku_driver.command.ipmitool.PowerReset"
+    "SetPXEBoot"            : "suzaku_driver.command.oob.SetPXEBoot",
+    "SetDiskBoot"           : "suzaku_driver.command.oob.SetDiskBoot",
+    "PowerOn"               : "suzaku_driver.command.oob.PowerOn",
+    "PowerOff"              : "suzaku_driver.command.oob.PowerOff",
+    "PowerReset"            : "suzaku_driver.command.oob.PowerReset"
 }
 
 class Command(Serializable):
