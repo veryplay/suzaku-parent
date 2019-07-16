@@ -16,7 +16,7 @@ class ConfigLoader:
         parser = argparse.ArgumentParser("options")
         parser.add_argument("-e", "--env",
             help="env variable",
-            choices=["dev"],
+            choices=[ "dev" ],
             default="dev")
         args, _ = parser.parse_known_args()
         self.env = args.env

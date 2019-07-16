@@ -6,7 +6,6 @@ import os
 import validators
 
 from suzaku_driver.command.common import Command
-from suzaku_driver.exception import ProcessExecutionException
 import suzaku_driver.utils.executor
 
 logger = logging.getLogger(__name__)
