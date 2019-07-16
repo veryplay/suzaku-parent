@@ -3,7 +3,7 @@ drop table if exists device;
 create table if not exists device(
     id bigint unsigned primary key auto_increment comment '设备ID编号',
     sn varchar(64) not null comment '设备SN',
-    flavor varchar(16) not null comment '规格',
+    instacne_type varchar(16) not null comment '实例类型',
     ilo_ip varchar(32) comment '带外管理IP',
     cabinet varchar(64) comment '机柜编号',
     u_position varchar(64) comment 'U位',
