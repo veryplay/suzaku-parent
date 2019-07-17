@@ -10,7 +10,7 @@ import subprocess
 import time
 import suzaku_driver.utils.encode
 import suzaku_driver.utils.reflection
-from suzaku_driver.exception import ProcessExecutionException, UnknownArgumentException, NoRootPermissionException
+from suzaku_driver.errors import ProcessExecutionException, UnknownArgumentException, NoRootPermissionException
 
 logger = logging.getLogger(__name__)
 
