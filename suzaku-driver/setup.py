@@ -78,7 +78,7 @@ setup(
     packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     entry_points = {
         "console_scripts": [
-            "suzaku-driver = suzaku_driver.cmd.server:run"
+            "suzaku-driver = suzaku_driver.cmd.driver:run"
         ],
     },
     install_requires = INSTALL_REQUIRED,
