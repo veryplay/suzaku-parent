@@ -5,7 +5,7 @@ import logging
 import validators
 
 import suzaku_driver.engine
-import suzaku_driver.errors
+from ssd.errors import CommandExecutionException
 from suzaku_driver.serialize import Serializable
 
 logger = logging.getLogger(__name__)
@@ -81,15 +81,15 @@ class Command(Serializable):
         self.engine.send_command(self)
 
     def execute_before(self):
-        raise suzaku_driver.errors.CommandExecutionError(
+        raise CommandExecutionException(
             "%s not impl run_before method" % self.__class__.__name__)
 
     def execute(self):
-        raise suzaku_driver.errors.CommandExecutionError(
+        raise CommandExecutionException(
             "%s not impl after_run method" % self.__class__.__name__)
 
     def execute_after(self):
-        raise suzaku_driver.errors.CommandExecutionError(
+        raise CommandExecutionException(
             "%s not impl run_after method" % self.__class__.__name__)
 
 class UnkownCommand(Command):

@@ -250,7 +250,6 @@ class Broker(suzaku_driver.lifecycle.LifeCycle):
                 self._rx_channel = None
                 self._close_connection(self._rx_connection)
                 self._rx_connection = None
-                
                 continue
             
 

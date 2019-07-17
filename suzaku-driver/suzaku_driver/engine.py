@@ -1,27 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import json
 import logging
 import importlib
-import os
 import Queue
 from Queue import Empty
 import signal
-import sys
-import tempfile
-from threading import Timer
-from threading import Condition
-import time
-import thread
 import threading
 
 import suzaku_driver.command.common
-import suzaku_driver.errors
 import suzaku_driver.lifecycle
 import suzaku_driver.rabbitmq
-
-from suzaku_driver.exception import ProcessExecutionException
 
 logger = logging.getLogger(__name__)
 

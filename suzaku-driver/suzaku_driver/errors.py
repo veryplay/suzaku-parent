@@ -15,95 +15,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import suzaku_driver.utils.encode
-
-
-class EngineError(Exception):
-    """Base class for errors."""
+class SuzakuException(Exception):
+    """Base class for errors generated in ironic-python-client."""
     # NOTE(JoshNang) `message` should not end with a period
     message = 'An error occurred in agent engine'
     details = 'An unexpected error occurred. Please try back later.'
-    code = "EngineError"
-    serializable_fields = ('type', 'code', 'message', 'details')
+    serializable_fields = ('type', 'message', 'details')
 
     def __init__(self, details=None, 
         *args, **kwargs):
-        super(EngineError, self).__init__(*args, **kwargs)
+        super(SteelException, self).__init__(*args, **kwargs)
         self.type = self.__class__.__name__
         if details:
             self.details = details
 
     def __str__(self):
-        return "{}: {}: {}".format(self.code, self.message, self.details)
+        return "{}: {}: {}".format(self.type, self.message, self.details)
 
     def __repr__(self):
-        return "{}('{}')".format(self.__class__.__name__, self.__str__())
+        return "{}('{}')".format(self.type, self.__str__())
 
-class NoDHCPException(EngineError):
-    """Error which occurs when a user supplies invalid content.
+class ProcessExecutionException(SuzakuException):
 
-    Either because that content cannot be parsed according to the advertised
-    `Content-Type`, or due to a content validation error.
-    """
-    details = "no dhcp exception, maybe network error."
-    message = "no dhcp exception, maybe network error."
-    code = "NoDHCPException"
+    def __init__(self, stdout=None, exit_code=None, cmd=None,
+                 description=None):
+        if exit_code is None:
+            exit_code = '-'
+        
+        if description is None:
+            description = "Unexpected error while running command."
+        
+        details = ('%(description)s\n'
+                    'Command: %(cmd)s\n'
+                    'Exit code: %(exit_code)s\n'
+                    'Stdout: %(stdout)r') % {
+                        'description': description,
+                        'cmd': cmd,
+                        'exit_code': exit_code,
+                        'stdout': stdout}
 
-    def __init__(self, details):
-        super(NoDHCPException, self).__init__(details)
+        super(ProcessExecutionException, self).__init__(details)
+        self.stdout = stdout
+        self.exit_code = exit_code
+        self.cmd = cmd
+        self.description = description
 
-class InvalidContentError(EngineError):
-    """Error which occurs when a user supplies invalid content.
-
-    Either because that content cannot be parsed according to the advertised
-    `Content-Type`, or due to a content validation error.
-    """
-    message = 'Invalid request body'
-    details = message
-    code = "InvalidContentError"
-
-    def __init__(self, details):
-        super(InvalidContentError, self).__init__(details)
-
-
-class NotFound(EngineError):
-    """Error which occurs if a non-existent APEngineErrorI endpoint is called."""
-    message = 'Not found'
-    code = "NotFound"
-    details = 'The requested URL was not found.'
-
-    def __init__(self, details):
-        super(NotFound, self).__init__(details)
+class NoRootPermissionException(ProcessExecutionException):
+    
+    def __init__(self, **kwargs):
+        super(NoRootPermissionException, self).__init__(**kwargs)
 
 
-class CommandExecutionError(EngineError):
+class CommandExecutionException(SuzakuException):
     """Error raised when a command fails to execute."""
 
     message = 'Command execution failed'
-    details = message
-    code = "CommandExecutionError"
 
     def __init__(self, details):
-        super(CommandExecutionError, self).__init__(details)
+        super(CommandExecutionException, self).__init__(details)
 
+class UnknownArgumentException(SuzakuException):
 
-class InvalidCommandError(InvalidContentError):
-    """Error which is raised when an unknown command is issued."""
-
-    message = 'Invalid command'
-    details = message
-    code = "InvalidCommandError"
+    message = 'unknow argument'
 
     def __init__(self, details):
-        super(InvalidCommandError, self).__init__(details)
-
-
-class InvalidCommandParamsError(InvalidContentError):
-    """Error which is raised when command parameters are invalid."""
-
-    message = 'Invalid command parameters'
-    details = message
-    code = 'InvalidCommandParamsError'
-
-    def __init__(self, details):
-        super(InvalidCommandParamsError, self).__init__(details)
+        super(UnknownArgumentException, self).__init__(details)

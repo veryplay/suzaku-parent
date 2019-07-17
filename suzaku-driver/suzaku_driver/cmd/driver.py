@@ -16,7 +16,7 @@ ascii_snake = """\
 
     --..,_                     _,.--.
        `'.'.                .'`__ o  `;__. 
-          '.'.            .'.'`  '---'`  `  SUZAKU Driver Service
+          '.'.            .'.'`  '---'`  `  Suzaku Driver Service
             '.`'--....--'`.'
               `'--....--'`
 
@@ -34,8 +34,12 @@ def run():
 
     engine = suzaku_driver.engine.Engine(cfg)
     engine.start()
-    pause()
-    logger.info("engine is stopped.")
+    try:
+      signal.pause()
+    except KeyboardInterrupt:
+      # ignore
+      pass
+    logger.info("engine is ready to stop")
 
 
 if __name__ == '__main__':
