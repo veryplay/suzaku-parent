@@ -24,7 +24,7 @@ class SuzakuException(Exception):
 
     def __init__(self, details=None, 
         *args, **kwargs):
-        super(SteelException, self).__init__(*args, **kwargs)
+        super(SuzakuException, self).__init__(*args, **kwargs)
         self.type = self.__class__.__name__
         if details:
             self.details = details
