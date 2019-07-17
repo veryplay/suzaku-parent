@@ -1,6 +1,6 @@
-drop table if exists device;
+drop table if exists bm;
 
-create table if not exists device(
+create table if not exists bm(
     id bigint unsigned primary key auto_increment comment '设备ID编号',
     sn varchar(64) not null comment '设备SN',
     instacne_type varchar(16) not null comment '实例类型',
@@ -14,4 +14,4 @@ create table if not exists device(
     is_del tinyint not null default 0 comment '是否删除(0-未删, 1-已删)'
 ) engine=innodb default charset=utf8 comment='设备信息';
 
-create unique index ux_device_sn on device(sn);
+create unique index ux_device_sn on bm(sn);
