@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import importlib
 import logging
 import validators
 
 import suzaku_driver.engine
-from ssd.errors import CommandExecutionException
+from suzaku_driver.errors import CommandExecutionException, SuzakuException
 from suzaku_driver.serialize import Serializable
 
 logger = logging.getLogger(__name__)
@@ -22,6 +23,15 @@ COMMAND_SETS = {
     "PowerOff"              : "suzaku_driver.command.oob.PowerOff",
     "PowerReset"            : "suzaku_driver.command.oob.PowerReset"
 }
+
+def load_command(class_name):
+    class_parts = class_name.split('.')
+    if len(class_parts) < 1:
+        raise SuzakuException("invalid command class name")
+    module_path = '.'.join(class_parts[:-1])
+    clazz_name = class_parts[-1]
+    module = importlib.import_module(module_path)
+    return getattr(module, clazz_name)
 
 class Command(Serializable):
 

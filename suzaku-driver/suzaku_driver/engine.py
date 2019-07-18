@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import importlib
 import Queue
 from Queue import Empty
 import signal
@@ -133,13 +132,9 @@ class Engine(suzaku_driver.lifecycle.LifeCycle):
                 if type(directive) is dict and directive.has_key("action"):
                     action = directive.get("action")
                     if suzaku_driver.command.common.COMMAND_SETS.has_key(action):
-                        directive_clazz_string = suzaku_driver.command.common.COMMAND_SETS.get(action)
-                        clazz_data = directive_clazz_string.split('.')
-                        module_path = '.'.join(clazz_data[:-1])
-                        clazz_name = clazz_data[-1]
-                        module = importlib.import_module(module_path)
-                        directive_clazz = getattr(module, clazz_name)
-                        directive_object = directive_clazz(engine = self, **directive)
+                        class_name = suzaku_driver.command.common.COMMAND_SETS.get(action)
+                        command_class = suzaku_driver.command.common.load_command(class_name)
+                        directive_object = command_class(engine = self, **directive)
                         directive_object.run()
                         continue
                 logger.error("unknow command action : %s", message)
