@@ -132,8 +132,8 @@ class Engine(suzaku_driver.lifecycle.LifeCycle):
                 if type(directive) is dict and directive.has_key("action"):
                     action = directive.get("action")
                     if suzaku_driver.command.common.COMMAND_SETS.has_key(action):
-                        class_name = ssd.command.common.COMMAND_SETS.get(action)
-                        command_class = ssd.command.common.load_command(class_name)
+                        class_name = suzaku_driver.command.common.COMMAND_SETS.get(action)
+                        command_class = suzaku_driver.command.common.load_command(class_name)
                         directive_object = command_class(engine = self, **directive)
                         directive_object.run()
                         continue

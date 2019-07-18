@@ -6,7 +6,7 @@ import logging
 import validators
 
 import suzaku_driver.engine
-from ssd.errors import CommandExecutionException, SuzakuException
+from suzaku_driver.errors import CommandExecutionException, SuzakuException
 from suzaku_driver.serialize import Serializable
 
 logger = logging.getLogger(__name__)
