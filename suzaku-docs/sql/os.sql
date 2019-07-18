@@ -1,6 +1,5 @@
 create table if not exists os(
-    id bigint unsigned primary key auto_increment comment 'ID',
-    uuid varchar(36) not null comment '操作系统ID',
+    id int unsigned primary key auto_increment comment 'ID',
     name varchar(16) not null comment '操作系统名称',
     type varchar(16) not null comment '操作系统分类:ubuntu/centos/windows',
     version varchar(16) not null comment '操作系统版本',

@@ -2,7 +2,7 @@ drop table if exists interface;
 
 create table if not exists interface(
     id bigint unsigned primary key auto_increment comment 'ID',
-    sn varchar(64) not null comment '设备SN',
+    sn varchar(32) not null comment '设备SN',
     name varchar(16) not null comment '网卡名称',
     type varchar(16) not null comment '网卡类型：lan/wan',
     mac varchar(32) not null comment 'MAC',

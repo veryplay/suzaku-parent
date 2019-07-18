@@ -5,7 +5,7 @@ create table if not exists image(
     uuid varchar(36) not null comment '镜像ID',
     name varchar(32) not null comment '中文名',
     version varchar(16) comment '镜像版本',
-    os_id varchar(36) not null comment 'OSID',
+    os_id int not null comment '操作系统ID',
     format varchar(16) not null comment '镜像格式',
     filename varchar(64) not null comment '镜像文件名称',
     url varchar(256) not null comment '镜像源路径',

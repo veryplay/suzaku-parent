@@ -1,7 +1,7 @@
 drop table if exists instance_type;
 
 create table if not exists instance_type(
-    id bigint unsigned primary key auto_increment comment 'ID',
+    id int unsigned primary key auto_increment comment 'ID',
     code varchar(32) not null comment '实例类型编码',
     name varchar(32) not null comment '规格名称',
     family varchar(32) not null comment '规格类型compute/memory/storage',

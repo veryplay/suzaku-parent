@@ -1,8 +1,8 @@
 drop table if exists manufacturer;
 
 create table if not exists manufacturer (
-    id bigint unsigned primary key auto_increment comment 'ID',
-    instacne_type varchar(32) not null comment '实例类型',
+    id int unsigned primary key auto_increment comment 'ID',
+    instance_type varchar(32) not null comment '实例类型',
     manufacturer varchar(64) not null comment '厂商',    
     product_name varchar(128) not null comment '产品型号名称',
     create_time datetime not null comment '创建时间',

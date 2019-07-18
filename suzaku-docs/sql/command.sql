@@ -2,9 +2,9 @@ drop table if exists command;
 
 create table if not exists command(
     id bigint unsigned primary key auto_increment comment 'ID',
-    request_id varchar(64) not null comment '请求ID',
-    sn varchar(64) not null comment '设备SN',
-    instance_id varchar(36) comment '实例Id',
+    request_id varchar(36) not null comment '请求ID',
+    sn varchar(36) not null comment '设备SN',
+    instance_id varchar(36) comment '实例uuid',
     action varchar(32) not null comment '操作',
     type varchar(16) not null comment '操作类型：agent, driver, network',    
     status varchar(16) comment '状态: wait,running,finish,error,cancel',
