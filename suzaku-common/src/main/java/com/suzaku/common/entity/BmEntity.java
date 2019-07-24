@@ -28,8 +28,6 @@ public class BmEntity {
 
     private String remark;
 
-    private Integer execute_count;
-
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime = new Date();

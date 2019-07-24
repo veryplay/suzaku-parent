@@ -13,6 +13,18 @@ public class InstanceTypeEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+    private String code;
+
+    private String name;
+
+    private String family;
+
+    private Integer manufacturerId;
+
+    private String extraSpecs;
+
+    private String description;
+
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime = new Date();

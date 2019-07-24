@@ -5,7 +5,7 @@ create table if not exists instance_type(
     code varchar(32) not null comment '实例类型编码',
     name varchar(32) not null comment '规格名称',
     family varchar(32) not null comment '规格类型compute/memory/storage',
-    manufacturer_id bigint unsigned comment '产品id',
+    manufacturer_id int unsigned comment '产品id',
     extra_specs varchar(512) default null comment '额外信息',
     description varchar(256) comment '描述',
     create_time datetime not null comment '创建时间',
