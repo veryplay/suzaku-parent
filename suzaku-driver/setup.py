@@ -30,7 +30,7 @@ INSTALL_REQUIRED = [
     "psutil==5.4.7",
     "requests==2.22.0",
     "six==1.11.0",
-    "validators==0.12.2"
+    "validators==0.12.6"
 ]
 
 DEPENDENCY_LINKS = [
