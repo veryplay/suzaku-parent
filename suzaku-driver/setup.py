@@ -27,7 +27,7 @@ INSTALL_REQUIRED = [
     "pyparsing==2.2.2",
     "pyudev==0.21.0",
     "pint==0.8.1",
-    "psutil==5.4.7",
+    "psutil==5.6.6",
     "requests==2.22.0",
     "six==1.11.0",
     "validators==0.12.2"
