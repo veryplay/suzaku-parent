@@ -23,7 +23,7 @@ INSTALL_REQUIRED = [
     "netaddr==0.7.19",
     "netifaces==0.10.7",
     "pika==0.13.1",
-    "PyYAML==4.2b4",
+    "PyYAML==5.4",
     "pyparsing==2.2.2",
     "pyudev==0.21.0",
     "pint==0.8.1",
